@@ -45,8 +45,8 @@ esac
 # Attempt to set JAVA_HOME if it's not already set.
 if [ -z "$JAVA_HOME" ] ; then
     if $darwin ; then
-        [ -z "$JAVA_HOME" -a -d "/Library/Java/Home" ] && export JAVA_HOME="/Library/Java/Home"
-        [ -z "$JAVA_HOME" -a -d "/System/Library/Frameworks/JavaVM.framework/Home" ] && export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
+        [ -z "$JAVA_HOME" -a -d "/Library/Java/org.vanq.pages.Home" ] && export JAVA_HOME="/Library/Java/org.vanq.pages.Home"
+        [ -z "$JAVA_HOME" -a -d "/System/Library/Frameworks/JavaVM.framework/org.vanq.pages.Home" ] && export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/org.vanq.pages.Home"
     else
         javaExecutable="`which javac`"
         [ -z "$javaExecutable" -o "`expr \"$javaExecutable\" : '\([^ ]*\)'`" = "no" ] && die "JAVA_HOME not set and cannot find javac to deduce location, please set JAVA_HOME."
