@@ -1,13 +1,11 @@
 package org.vanq.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
-import java.util.List;
 
 public abstract class AbstractPageObject {
 
@@ -28,16 +26,21 @@ public abstract class AbstractPageObject {
     private void waitForPageToLoad() {
         // Wait until the content of the first H2 tag visible in the browser matches our expected value.
         // This helps make sure the page is loaded before the next step of the test continues.
-        wait.until(new ExpectedCondition<Boolean>() {
-            @Override
-            public Boolean apply(WebDriver d) {
-                String actualH2Content = d.findElement(By.cssSelector("h2")).getText();
-                return actualH2Content.equals(getExpectedH2Content());
-            }
-        });
+        try {
+            wait.until(new ExpectedCondition<Boolean>() {
+                @Override
+                public Boolean apply(WebDriver d) {
+                    String actualH2Content = d.findElement(By.cssSelector("h2")).getText();
+                    return actualH2Content.equals(getExpectedH2Content());
+                }
+            });
+        }
+       catch (TimeoutException e) {
+           Assert.fail("Timed out loading " + this.getClass().getSimpleName() + " page");
+       }
     }
 
-    protected void assertPageIsLoaded() {
+    private void assertPageIsLoaded() {
         // Assert that the content of the first H2 tag in the current page patches the expected content
         String actualH2Content = driver.findElement(By.cssSelector("h2")).getText();
         Assert.assertEquals(actualH2Content, getExpectedH2Content());

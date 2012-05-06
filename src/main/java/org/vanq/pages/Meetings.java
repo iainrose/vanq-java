@@ -10,6 +10,6 @@ public class Meetings extends AbstractPageObject {
 
     @Override
     protected String getExpectedH2Content() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return "Past Meetings and Materials";
     }
 }

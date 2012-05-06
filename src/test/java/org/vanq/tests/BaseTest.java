@@ -9,7 +9,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.vanq.pages.Pages;
+import org.vanq.sitemap.Pages;
 
 import java.net.MalformedURLException;
 import java.net.URL;

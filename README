@@ -1,6 +1,6 @@
 This project is an example of building a test automation framework using WebDriver w Java, TestNG, Gradle with InteliJ or Eclipse.
 
-It extends the basic tutorial found on the Selenium Wiki and runs a couple of tests against http://vanq.org.
+It extends the basic tutorial found on the Selenium Wiki and runs a couple of tests against http://vanq.org
 
 http://code.google.com/p/selenium/wiki/GettingStarted
 http://code.google.com/p/selenium/wiki/PageObjects
@@ -10,6 +10,11 @@ There are a couple of key concepts demonstrated in this project that will help y
 - Switching the navigation of the tests from one page object to another
 - Abstracting the test setup into a BaseTest class
 - Using TestNG and Gradle to run the tests
+
+Checkout the Code
+-----------------
+
+git clone git@github.com:iainrose/vanq-java.git
 
 Creating the IDE project
 ------------------------
@@ -64,7 +69,7 @@ Running the tests using Gradle
 ------------------------------
 
 Unless you have Gradle installed, you'll need to use the Gradle wrapper which is included in the project
-./gradlew or gradle.bat on Windows
+./gradlew, or gradle.bat on Windows
 
 To run all tests (uses Firefox by default)
 ./gradlew clean test
