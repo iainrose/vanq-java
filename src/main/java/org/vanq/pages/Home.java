@@ -26,7 +26,16 @@ public class Home extends AbstractPageObject {
         return navBar.clickMeetingsTab();
     }
 
+    public Mission clickMissionTab() {
+        return navBar.clickMissionTab();
+    }
+
+    public Sponsors clickSponsorsTab() {
+        return navBar.clickSponsorsTab();
+    }
+
     public boolean isVanqLogoDisplayed() {
         return header.isVanqLogoDisplayed();
     }
+
 }

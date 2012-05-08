@@ -4,14 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.vanq.pages.Home;
 
-public class HomePageTests extends BaseTest {
-
-    @Test(groups = {"functional", "smoke"})
-    public void clickHomeTabTest() {
-        driver.get(WEB_SERVER);
-        Home homePage = new Home(driver);
-        homePage.clickHomeTab();
-    }
+public class HeaderTest extends BaseTest {
 
     @Test(groups = {"functional"})
     public void isLogoDisplayedTest() {
