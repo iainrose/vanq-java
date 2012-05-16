@@ -24,19 +24,23 @@ public class BaseTest {
     protected static final int SELENIUM_PORT = Integer.valueOf(System.getProperty("SELENIUM_PORT", "4444"));
 
     protected static RemoteWebDriver driver;
-    protected static Pages pages;
+    protected final Pages pages;
 
+
+    public BaseTest() {
+        this.pages = new Pages();
+    }
 
     //Runs once before all tests in test class
     @BeforeClass(alwaysRun = true)
-    public void suiteSetup() throws Exception {
+    public void setupWebDriver() throws MalformedURLException {
         if (REMOTE_WEB_DRIVER) {
             setupRemoteWebDriver();
             driver.setFileDetector(new LocalFileDetector());
         } else {
-            setupWebDriver();
+            setupLocalWebDriver();
         }
-        pages = new Pages();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
     //Runs after each test method in test class
@@ -55,69 +59,39 @@ public class BaseTest {
     private void setupRemoteWebDriver() throws MalformedURLException {
         DesiredCapabilities capabilities;
         if (BROWSER.equals("firefox")) {
-            capabilities = setupRemoteFirefoxCapabilities();
+            capabilities = DesiredCapabilities.firefox();
         } else if (BROWSER.equals("internetExplorer")) {
-            capabilities = setupRemoteInternetExplorerCapabilities();
+            capabilities = DesiredCapabilities.internetExplorer();
+            capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
         } else if (BROWSER.equals("chrome")) {
-            capabilities = setupRemoteChromeCapabilities();
+            capabilities = DesiredCapabilities.chrome();
         } else {
             throw new RuntimeException("Browser type unsupported:" + BROWSER);
         }
         driver = new RemoteWebDriver(
                 new URL("http://" + SELENIUM_HOST + ":" + SELENIUM_PORT + "/wd/hub"),
                 capabilities);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
     //Sets up local WebDriver session, does not require Selenium Server
-    private void setupWebDriver() {
+    private void setupLocalWebDriver() {
+        DesiredCapabilities capabilities;
         if (BROWSER.equals("firefox")) {
-            setupFirefoxDriver();
+            driver = new FirefoxDriver();
         } else if (BROWSER.equals("internetExplorer")) {
-            setupInternetExplorerDriver();
+            capabilities = DesiredCapabilities.internetExplorer();
+            capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+            driver = new InternetExplorerDriver(capabilities);
         } else if (BROWSER.equals("chrome")) {
-            setupChromeDriver();
+            String chromeDriverPath = "lib/chromedriver";
+            if (System.getProperty("os.name").contains("Windows")) {
+                chromeDriverPath = "lib/chromedriver.exe";
+            }
+            System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+            driver = new ChromeDriver();
         } else {
             throw new RuntimeException("Browser type unsupported" + BROWSER);
         }
-    }
-
-    private void setupInternetExplorerDriver() {
-        DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
-        capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-        driver = new InternetExplorerDriver(capabilities);
-    }
-
-    private void setupChromeDriver() {
-        String chromeDriverPath = "lib/chromedriver";
-        if (System.getProperty("os.name").contains("Windows")) {
-            chromeDriverPath = "lib/chromedriver.exe";
-        }
-        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-        driver = new ChromeDriver();
-    }
-
-    private void setupFirefoxDriver() {
-        driver = new FirefoxDriver();
-    }
-
-    private DesiredCapabilities setupRemoteChromeCapabilities() {
-        DesiredCapabilities capabilities;
-        capabilities = DesiredCapabilities.chrome();
-        return capabilities;
-    }
-
-    private DesiredCapabilities setupRemoteInternetExplorerCapabilities() {
-        DesiredCapabilities capabilities;
-        capabilities = DesiredCapabilities.internetExplorer();
-        capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-        return capabilities;
-    }
-
-    private DesiredCapabilities setupRemoteFirefoxCapabilities() {
-        DesiredCapabilities capabilities;
-        capabilities = DesiredCapabilities.firefox();
-        return capabilities;
     }
 
 }
