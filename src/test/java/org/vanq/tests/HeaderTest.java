@@ -8,7 +8,6 @@ public class HeaderTest extends BaseTest {
 
     @Test(groups = {"functional"})
     public void isLogoDisplayedTest() {
-        driver.get(WEB_SERVER);
         Home homePage = new Home(driver);
         Assert.assertTrue(homePage.isVanqLogoDisplayed());
     }

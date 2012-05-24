@@ -14,6 +14,6 @@ public class Header {
     By vanqLogo = By.cssSelector("img[alt='VANQ']");
 
     public boolean isVanqLogoDisplayed() {
-            return driver.findElements(vanqLogo).size() > 0;
+        return driver.findElements(vanqLogo).size() > 0;
     }
 }

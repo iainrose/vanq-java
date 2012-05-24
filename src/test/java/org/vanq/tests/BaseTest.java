@@ -9,7 +9,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.vanq.sitemap.Pages;
+import org.testng.annotations.BeforeMethod;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,19 +17,19 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
-    protected static final String WEB_SERVER = System.getProperty("WEB_SERVER", "http://www.vanq.org/");
+    protected static final String BASE_URL = System.getProperty("BASE_URL", "http://www.vanq.org/");
     protected static final String BROWSER = System.getProperty("BROWSER", "firefox");
     protected static final boolean REMOTE_WEB_DRIVER = Boolean.valueOf(System.getProperty("REMOTE_WEB_DRIVER", "false"));
     protected static final String SELENIUM_HOST = System.getProperty("SELENIUM_HOST", "localhost");
     protected static final int SELENIUM_PORT = Integer.valueOf(System.getProperty("SELENIUM_PORT", "4444"));
 
     protected static RemoteWebDriver driver;
-    protected final Pages pages;
+//    protected final Pages pages;
 
-
+/*
     public BaseTest() {
         this.pages = new Pages();
-    }
+    }*/
 
     //Runs once before all tests in test class
     @BeforeClass(alwaysRun = true)
@@ -41,6 +41,12 @@ public class BaseTest {
             setupLocalWebDriver();
         }
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    }
+
+    //Runs before each test method in test class
+    @BeforeMethod(alwaysRun = true)
+    public void loadLandingPage() {
+        driver.get(BASE_URL);
     }
 
     //Runs after each test method in test class

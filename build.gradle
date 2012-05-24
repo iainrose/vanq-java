@@ -23,7 +23,7 @@ tasks.withType(Test) {
         logger.lifecycle("Running test: " + descriptor)
     }
     onOutput { descriptor, event ->
-        logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message )
+        logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message)
     }
 }
 

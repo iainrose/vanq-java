@@ -34,10 +34,9 @@ public abstract class AbstractPageObject {
                     return actualH2Content.equals(getExpectedH2Content());
                 }
             });
+        } catch (TimeoutException e) {
+            Assert.fail("Timed out loading " + this.getClass().getSimpleName() + " page");
         }
-       catch (TimeoutException e) {
-           Assert.fail("Timed out loading " + this.getClass().getSimpleName() + " page");
-       }
     }
 
     private void assertPageIsLoaded() {

@@ -1,6 +1,8 @@
 package org.vanq.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.vanq.components.Header;
 import org.vanq.components.NavBar;
 
@@ -10,14 +12,20 @@ public class Home extends AbstractPageObject {
         super(driver);
     }
 
+    //Reusable components
     private NavBar navBar = new NavBar(driver);
     private Header header = new Header(driver);
 
+    //Define the text we will search for on each page load to assert we are on the expected page
     @Override
     protected String getExpectedH2Content() {
         return "Welcome to VANQ.org";
     }
 
+    //Define locator's for page elements
+    By presenterBiosLocator = By.linkText("Presenter Bios");
+
+    //Define public methods
     public Home clickHomeTab() {
         return navBar.clickHomeTab();
     }
@@ -36,6 +44,12 @@ public class Home extends AbstractPageObject {
 
     public boolean isVanqLogoDisplayed() {
         return header.isVanqLogoDisplayed();
+    }
+
+    public PresenterBios clickPresenterBios() {
+        WebElement presenterBios = driver.findElement(presenterBiosLocator);
+        presenterBios.click();
+        return new PresenterBios(driver);
     }
 
 }
