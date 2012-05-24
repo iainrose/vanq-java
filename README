@@ -11,8 +11,8 @@ There are a couple of key concepts demonstrated in this project that will help y
 - Abstracting the test setup into a BaseTest class
 - Using TestNG and Gradle to run the tests
 
-Checkout the Code
------------------
+Clone the GitHub repo
+---------------------
 
 git clone git@github.com:iainrose/vanq-java.git
 
