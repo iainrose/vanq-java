@@ -15,6 +15,9 @@ tasks.withType(Test) {
     useTestNG()
     systemProperties = System.getProperties()
     maxParallelForks = 5
+    options {
+        listeners << 'org.vanq.testng.ScreenShot'
+    }
 }
 
 task includegroup1(type: Test) {
