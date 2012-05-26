@@ -4,7 +4,7 @@ import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 import org.vanq.tests.BaseTest;
 
-public class Screenshot extends TestListenerAdapter {
+public class Listener extends TestListenerAdapter {
 
     @Override
     public void onConfigurationFailure(ITestResult itr) {

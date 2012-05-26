@@ -16,7 +16,7 @@ tasks.withType(Test) {
     systemProperties = System.getProperties()
     maxParallelForks = 5
     options {
-        listeners << 'org.vanq.testng.Screenshot'
+        listeners << 'org.vanq.testng.Listener'
     }
 }
 
