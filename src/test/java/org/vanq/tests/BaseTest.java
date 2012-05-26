@@ -103,10 +103,10 @@ public class BaseTest {
     }
 
     // Takes a screenshot
-    public static void takeScreenshot() {
+    public static void takeScreenshot(String testName) {
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(scrFile, new File("build/screenshot.png"));
+            FileUtils.copyFile(scrFile, new File("build/screenshots/"+testName+"_"+BROWSER+".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

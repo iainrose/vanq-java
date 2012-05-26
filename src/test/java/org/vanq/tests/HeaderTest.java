@@ -9,7 +9,7 @@ public class HeaderTest extends BaseTest {
     @Test(groups = {"functional"})
     public void vanqLogoDisplayedOnHomePageTest() {
         Home home = new Home(driver);
-        Assert.assertTrue(home.isVanqLogoDisplayed());
+        Assert.assertFalse(home.isVanqLogoDisplayed());
     }
 
 }
