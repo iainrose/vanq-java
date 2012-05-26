@@ -103,7 +103,7 @@ public class BaseTest {
     }
 
     // Takes a screenshot
-    public static void screenshot() {
+    public static void takeScreenshot() {
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
             FileUtils.copyFile(scrFile, new File("build/screenshot.png"));

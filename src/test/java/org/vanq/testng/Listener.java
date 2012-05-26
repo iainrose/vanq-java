@@ -8,13 +8,13 @@ public class Listener extends TestListenerAdapter {
 
     @Override
     public void onConfigurationFailure(ITestResult itr) {
-        BaseTest.screenshot();
+        BaseTest.takeScreenshot();
     }
 
     @Override
     public void onTestFailure(ITestResult tr) {
         //Method name = (tr.m_name).toString()
-        BaseTest.screenshot();
+        BaseTest.takeScreenshot();
     }
 
 }
