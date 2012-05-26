@@ -10,12 +10,18 @@ public class PresenterBiosTest extends BaseTest {
 
     @Test(groups = {"content"})
     public void verifyIainRose31MayPresentationNameTest() {
+
+        // Test Data
+        String expectedPresentationName = "Selenium in the real world (or where are the tests and how do I run them?)";
+        String presentationDate = "May. 31, 2012:";
+
+        // Navigate to Iain Rose's bio page
         Home home = new Home(driver);
         PresenterBios presenterBios = home.clickPresenterBios();
         IainRoseBio iainRoseBio = presenterBios.clickPresenterIainRose();
 
-        String expectedPresentationName = "Selenium in the real world (or where are the tests and how do I run them?)";
-        String actualPresentationName = iainRoseBio.getPresentationNameForDate("May. 31, 2012:");
+        // Get the displayed presentation name
+        String actualPresentationName = iainRoseBio.getPresentationNameForDate(presentationDate);
 
         Assert.assertEquals(expectedPresentationName, actualPresentationName);
     }

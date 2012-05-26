@@ -9,7 +9,7 @@ public class IainRoseBio extends AbstractBioPage {
     }
 
     @Override
-    protected String getExpectedH2Content() {
+    public String getExpectedPageName() {
         return "Iain Rose";
     }
 

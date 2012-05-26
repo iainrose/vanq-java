@@ -20,8 +20,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+// All tests extend BaseTest
 public class BaseTest {
 
+    // Get system properties
     protected static final String BASE_URL = System.getProperty("BASE_URL", "http://www.vanq.org/");
     protected static final String BROWSER = System.getProperty("BROWSER", "firefox");
     protected static final boolean REMOTE_WEB_DRIVER = Boolean.valueOf(System.getProperty("REMOTE_WEB_DRIVER", "false"));
@@ -29,14 +31,9 @@ public class BaseTest {
     protected static final int SELENIUM_PORT = Integer.valueOf(System.getProperty("SELENIUM_PORT", "4444"));
 
     protected static RemoteWebDriver driver;
-//    protected final Pages pages;
 
-/*
-    public BaseTest() {
-        this.pages = new Pages();
-    }*/
-
-    //Runs once before all tests in test class
+    // Methods annotated with @BeforeClass are run once after all test methods in test class have run
+    // This method creates a WebDriver session for the test methods in each test class
     @BeforeClass(alwaysRun = true)
     public void setupWebDriver() throws MalformedURLException {
         if (REMOTE_WEB_DRIVER) {
@@ -48,25 +45,25 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
-    //Runs before each test method in test class
+    // Methods annotated with @BeforeMethod are run before each test method in test class
     @BeforeMethod(alwaysRun = true)
     public void loadLandingPage() {
         driver.get(BASE_URL);
     }
 
-    //Runs after each test method in test class
+    // Methods annotated with @AfterMethod are run after each test method in test class
     @AfterMethod(alwaysRun = true)
     public void deleteAllCookies() {
         driver.manage().deleteAllCookies();
     }
 
-    //Runs once after all tests in test class
+    // Methods annotated with @AfterClass are run once after all test methods in test class have run
     @AfterClass(alwaysRun = true)
-    public void suiteTearDown() {
+    public void closeBrowser() {
         driver.quit();
     }
 
-    //Sets up Remote WebDriver session, requires Selenium Server running
+    // Sets up a Remote WebDriver session, requires Selenium Server to be running on SELENIUM_HOST : SELENIUM_PORT
     private void setupRemoteWebDriver() throws MalformedURLException {
         DesiredCapabilities capabilities;
         if (BROWSER.equals("firefox")) {
@@ -84,7 +81,7 @@ public class BaseTest {
                 capabilities);
     }
 
-    //Sets up local WebDriver session, does not require Selenium Server
+    // Sets up local WebDriver session, does not require Selenium Server
     private void setupLocalWebDriver() {
         DesiredCapabilities capabilities;
         if (BROWSER.equals("firefox")) {
@@ -105,8 +102,9 @@ public class BaseTest {
         }
     }
 
-    public static void screenShot() {
-        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+    // Takes a screenshot
+    public static void screenshot() {
+        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         try {
             FileUtils.copyFile(scrFile, new File("build/screenshot.png"));
         } catch (IOException e) {

@@ -7,42 +7,39 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+// All page objects extend AbstractPageObject
 public abstract class AbstractPageObject {
 
+    // Handles to WebDriver that each page object will inherit
     protected WebDriver driver;
-    protected WebDriverWait wait;
+    private final WebDriverWait wait;
 
+    // Constructor for each page object
     public AbstractPageObject(WebDriver driver) {
         this.driver = driver;
         this.wait = (new WebDriverWait(driver, 60));
         waitForPageToLoad();
-        assertPageIsLoaded();
     }
 
-    // Each page object must implement this method to return the content of the first <H2> tag on that page.
-    // This will be used to assert that the current page has finished loading
-    protected abstract String getExpectedH2Content();
+    // Locators
+    By pageNameLocator = By.tagName("h2");
 
-    private void waitForPageToLoad() {
-        // Wait until the content of the first H2 tag visible in the browser matches our expected value.
-        // This helps make sure the page is loaded before the next step of the test continues.
+    // Each page object will implement this method to return its expected page name.
+    public abstract String getExpectedPageName();
+
+    // Wait until the page name of the current page matches our expected value else fail the test if the wait times out.
+    public void waitForPageToLoad() {
         try {
             wait.until(new ExpectedCondition<Boolean>() {
                 @Override
                 public Boolean apply(WebDriver d) {
-                    String actualH2Content = d.findElement(By.cssSelector("h2")).getText();
-                    return actualH2Content.equals(getExpectedH2Content());
+                    String actualPageName = driver.findElement(pageNameLocator).getText();
+                    return actualPageName.equals(getExpectedPageName());
                 }
             });
         } catch (TimeoutException e) {
             Assert.fail("Timed out loading " + this.getClass().getSimpleName() + " page");
         }
-    }
-
-    private void assertPageIsLoaded() {
-        // Assert that the content of the first H2 tag in the current page patches the expected content
-        String actualH2Content = driver.findElement(By.cssSelector("h2")).getText();
-        Assert.assertEquals(actualH2Content, getExpectedH2Content());
     }
 
 }

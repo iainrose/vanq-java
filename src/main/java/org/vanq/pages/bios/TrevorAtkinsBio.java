@@ -9,9 +9,8 @@ public class TrevorAtkinsBio extends AbstractBioPage {
     }
 
     @Override
-    protected String getExpectedH2Content() {
+    public String getExpectedPageName() {
         return "Trevor Atkins";
     }
-
 
 }

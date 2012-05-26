@@ -2,14 +2,15 @@ package org.vanq.pages;
 
 import org.openqa.selenium.WebDriver;
 
-public class Mission extends AbstractPageObject {
+public class Mission extends AbstractBasePage {
 
     public Mission(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    protected String getExpectedH2Content() {
+    public String getExpectedPageName() {
         return "VANQ's Mission Statement";
     }
+
 }

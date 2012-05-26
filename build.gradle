@@ -1,3 +1,5 @@
+import org.testng.annotations.Test
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
@@ -16,19 +18,19 @@ tasks.withType(Test) {
     systemProperties = System.getProperties()
     maxParallelForks = 5
     options {
-        listeners << 'org.vanq.testng.ScreenShot'
+        listeners << 'org.vanq.testng.Screenshot'
     }
 }
 
-task includegroup1(type: Test) {
+task includeSmokeGroup(type: Test) {
     useTestNG() {
-        includeGroups 'group1'
+        includeGroups 'smoke'
     }
 }
 
-task excludegroup1(type: Test) {
+task excludeContentGroup(type: Test) {
     useTestNG() {
-        excludeGroups 'group1'
+        excludeGroups 'content'
     }
 }
 
