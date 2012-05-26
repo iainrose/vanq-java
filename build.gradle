@@ -1,5 +1,3 @@
-import org.testng.annotations.Test
-
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'

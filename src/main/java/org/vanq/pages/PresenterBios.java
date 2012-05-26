@@ -17,9 +17,11 @@ public class PresenterBios extends AbstractBasePage {
     }
 
     // Locators
+
     By iainRoseLocator = By.linkText("Iain Rose");
 
     // Public methods for page object
+
     public IainRoseBio clickPresenterIainRose() {
         WebElement presenter = driver.findElement(iainRoseLocator);
         presenter.click();

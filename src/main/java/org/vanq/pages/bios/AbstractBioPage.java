@@ -11,14 +11,17 @@ import java.util.List;
 
 public abstract class AbstractBioPage extends AbstractBasePage {
 
+    // All Bio pages extend AbstractBioPage
     public AbstractBioPage(WebDriver driver) {
         super(driver);
     }
 
-    // Locators
+    // Locators for Web Elements common to all Bio pages
+
     By presentationListLocator = By.cssSelector("blockquote li");
     By presentationLinkLocator = By.tagName("a");
 
+    // Public method common to all Bio Pages
 
     public Meetings clickPresentationForDate(String date) {
         WebElement presentationLink = getPresentationLinkForDate(date);
