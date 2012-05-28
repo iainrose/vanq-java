@@ -1,4 +1,4 @@
-package org.vanq.pages;
+package org.vanq;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;

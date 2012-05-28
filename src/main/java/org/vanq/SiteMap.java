@@ -1,6 +1,6 @@
-package org.vanq.sitemap;
+package org.vanq;
 
-public final class Pages {
+public final class SiteMap {
 
     // URLs relative to BASE_URL
 
