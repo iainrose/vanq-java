@@ -11,6 +11,8 @@ public class MeetingsPageTest extends BaseTest {
         
         // This test loads the meetings page directly so that navigational issues from the home page do not fail the test
         driver.get(BASE_URL + SiteMap.meetings);
+        
+        // Initialize the meetings page object
         Meetings meetings = new Meetings(driver);
     }
 }
