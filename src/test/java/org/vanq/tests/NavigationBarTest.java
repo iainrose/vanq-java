@@ -6,25 +6,25 @@ import org.vanq.pages.Home;
 public class NavigationBarTest extends BaseTest {
 
     @Test(groups = {"functional", "smoke"})
-    public void clickHomeTabTest() {
+    public void clickHomeTabOnHomePageTest() {
         Home homePage = new Home(driver);
         homePage.clickHomeTab();
     }
 
     @Test(groups = {"functional", "smoke"})
-    public void clickMeetingsTabTest() {
+    public void clickMeetingsTabOnHomePageTest() {
         Home homePage = new Home(driver);
         homePage.clickMeetingsTab();
     }
 
     @Test(groups = {"functional", "smoke"})
-    public void clickMissionTabTest() {
+    public void clickMissionTabOnHomePageTest() {
         Home homePage = new Home(driver);
         homePage.clickMissionTab();
     }
 
     @Test(groups = {"functional", "smoke"})
-    public void clickSponsorTabTest() {
+    public void clickSponsorTabOnHomePageTest() {
         Home homePage = new Home(driver);
         homePage.clickSponsorsTab();
     }
