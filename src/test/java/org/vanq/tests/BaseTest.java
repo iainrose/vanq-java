@@ -26,7 +26,7 @@ public class BaseTest {
     // Get system properties
     protected static final String BASE_URL = System.getProperty("BASE_URL", "http://www.vanq.org/");
     protected static final String BROWSER = System.getProperty("BROWSER", "firefox");
-    protected static final boolean REMOTE_WEB_DRIVER = Boolean.valueOf(System.getProperty("REMOTE_WEB_DRIVER", "false"));
+    protected static final boolean REMOTE = Boolean.valueOf(System.getProperty("REMOTE", "false"));
     protected static final String SELENIUM_HOST = System.getProperty("SELENIUM_HOST", "localhost");
     protected static final int SELENIUM_PORT = Integer.valueOf(System.getProperty("SELENIUM_PORT", "4444"));
 
@@ -36,7 +36,7 @@ public class BaseTest {
     // This method creates a WebDriver session for the test methods in each test class
     @BeforeClass(alwaysRun = true)
     public void setupWebDriver() throws MalformedURLException {
-        if (REMOTE_WEB_DRIVER) {
+        if (REMOTE) {
             setupRemoteWebDriver();
             driver.setFileDetector(new LocalFileDetector());
         } else {
