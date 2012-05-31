@@ -1,11 +1,21 @@
 package org.vanq.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.vanq.SiteMap;
 import org.vanq.pages.Meetings;
 
 public class MeetingsPageTest extends BaseTest {
+
+    // These tests start on the meetings page
+    // This is so that potential navigational issues from the home page do not impact the test
+    // This also makes the tests faster as they do not need to load the home page at all
+    @Override
+    @BeforeMethod(alwaysRun = true)
+    public void loadLandingPage() {
+        driver.get(BASE_URL + SiteMap.meetings);
+    }
 
     @Test(groups = {"content"})
     public void may312012PresenterTest() {
@@ -13,9 +23,6 @@ public class MeetingsPageTest extends BaseTest {
         // Test Data
         String date = "May. 31, 2012";
         String expectedPresenterName = "Iain Rose";
-        
-        // This test loads the meetings page directly so that navigational issues from the home page do not fail the test
-        driver.get(BASE_URL + SiteMap.meetings);
         
         // Initialize the meetings page object
         Meetings meetings = new Meetings(driver);
@@ -35,9 +42,6 @@ public class MeetingsPageTest extends BaseTest {
         String date = "Apr. 26, 2012";
         String expectedPresenterName = "Trevor Atkins";
 
-        // This test loads the meetings page directly so that navigational issues from the home page do not fail the test
-        driver.get(BASE_URL + SiteMap.meetings);
-
         // Initialize the meetings page object
         Meetings meetings = new Meetings(driver);
 
@@ -55,9 +59,6 @@ public class MeetingsPageTest extends BaseTest {
         // Test Data
         String date = "Mar. 29, 2012";
         String expectedPresenterName = "Brent Cromarty";
-
-        // This test loads the meetings page directly so that navigational issues from the home page do not fail the test
-        driver.get(BASE_URL + SiteMap.meetings);
 
         // Initialize the meetings page object
         Meetings meetings = new Meetings(driver);

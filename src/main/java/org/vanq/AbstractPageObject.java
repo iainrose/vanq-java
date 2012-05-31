@@ -12,7 +12,7 @@ public abstract class AbstractPageObject {
 
     // Handles to WebDriver that each page object will inherit
     protected WebDriver driver;
-    private final WebDriverWait wait;
+    protected WebDriverWait wait;
 
     // Constructor for each page object
     public AbstractPageObject(WebDriver driver) {
@@ -41,5 +41,4 @@ public abstract class AbstractPageObject {
             Assert.fail("Timed out loading " + this.getClass().getSimpleName() + " page");
         }
     }
-
 }
