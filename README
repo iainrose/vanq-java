@@ -75,13 +75,13 @@ To run all tests (uses Firefox by default)
 ./gradlew clean test
 
 To run a single test class
-./gradlew clean test -Dtest.single="HomePageTests"
+./gradlew clean test -Dtest.single="MeetingsPageTest"
 
-To run only tests belonging to group 1 (as defined in the includegroup1 task in build.gradle)
-./gradlew clean includegroup1
+To run only tests belonging to the "smoke" group (as defined in the includeSmokeGroup task in build.gradle)
+./gradlew clean includeSmokeGroup
 
-To run only tests not belonging to group 1 (as defined in the excludegroup1 task in build.gradle)
-./gradlew clean excludegroup1
+To run only tests not belonging to the "content" group (as defined in the excludeContentGroup task in build.gradle)
+./gradlew clean excludeContentGroup
 
 To run tests in Chrome
 ./gradlew clean test -DBROWSER=chrome
