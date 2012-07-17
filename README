@@ -58,6 +58,7 @@ There are several reasons for this:
 
 - You control when the WebElement will get looked up each time you use the locator which can help avoid stale element exceptions
 - You can reuse your locators in methods that assert the presence or absence of a WebElement (return driver.findElements(yourByObjectLocator).size() > 0)
+- You can reuse your locators in all the canned ExpectedConditions waits
 - Personally I think they look cleaner in the code
 
 Running the tests via the IDE
