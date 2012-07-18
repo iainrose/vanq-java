@@ -7,14 +7,14 @@ repositories {
 }
 
 dependencies {
-    compile "org.seleniumhq.selenium:selenium-java:2.21.0"
+    compile "org.seleniumhq.selenium:selenium-java:2.24.1"
     compile "org.testng:testng:6.3.1"
 }
 
 tasks.withType(Test) {
     useTestNG()
     systemProperties = System.getProperties()
-    maxParallelForks = 5
+    maxParallelForks = 2
     options {
         listeners << 'org.vanq.testng.Listener'
     }

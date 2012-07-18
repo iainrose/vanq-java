@@ -1,6 +1,6 @@
 package org.vanq.tests;
 
-import junit.framework.Assert;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.vanq.pages.Home;
 import org.vanq.pages.PresenterBios;
