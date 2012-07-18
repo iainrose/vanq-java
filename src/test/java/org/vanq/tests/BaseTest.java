@@ -42,7 +42,7 @@ public class BaseTest {
         } else {
             setupLocalWebDriver();
         }
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
     // Methods annotated with @BeforeMethod are run before each test method in test class
