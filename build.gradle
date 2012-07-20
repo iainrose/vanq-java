@@ -15,9 +15,6 @@ tasks.withType(Test) {
     useTestNG()
     systemProperties = System.getProperties()
     maxParallelForks = 2
-    options {
-        listeners << 'org.vanq.testng.Listener'
-    }
 }
 
 task includeSmokeGroup(type: Test) {
